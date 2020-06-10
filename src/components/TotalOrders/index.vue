@@ -1,5 +1,5 @@
 <template>
-  <common-card></common-card>
+  <common-card title="累计订单数" value="55555"></common-card>
 </template>
 
 <script>
