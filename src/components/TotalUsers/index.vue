@@ -20,11 +20,7 @@
 import commonCardMixin from '@/utils/mixins/commonCardMixin'
 export default {
   mixins: [commonCardMixin],
-  mounted() {
-    const chartDom = document.getElementById('total-users-chart')
-    const chart = this.$echarts.init(chartDom)
-    chart.setOption({})
-  },
+  mounted() {},
   methods: {
     getOptions() {
       return {
