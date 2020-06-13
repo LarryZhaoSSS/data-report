@@ -1,6 +1,6 @@
 <template>
   <div class="sales-view">
-    <el-card shadow="hover">
+    <el-card shadow="hover" :body-style="{padding:'0 0 20px 0'}">
       <template v-slot:header>
         <div class="menu-wrapper">
           <el-menu
@@ -33,7 +33,21 @@
           </div>
         </div>
       </template>
-      <template></template>
+      <template>
+        <div class="sales-view-chart-wrapper">
+          <v-chart :options="getOptions()" />
+          <div class="sales-view-list">
+            <div class="sales-view-title">排行榜</div>
+            <div class="list-item-wrapper">
+              <div class="list-item" v-for="item in rankData" :key="item.no">
+                <div class="list-item-no" :class="+item.no<=3?'top-no':''">{{item.no}}</div>
+                <div class="list-item-name">{{ item.name }}</div>
+                <div class="list-item-money">{{ item.money }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </template>
     </el-card>
   </div>
 </template>
@@ -75,12 +89,116 @@ export default {
             }
           }
         ]
-      }
+      },
+      rankData: [
+        {
+          no: 1,
+          name: '麦当劳',
+          money: '334,444'
+        },
+        {
+          no: 2,
+          name: '麦当劳',
+          money: '334,444'
+        },
+        {
+          no: 3,
+          name: '麦当劳',
+          money: '334,444'
+        },
+        {
+          no: 4,
+          name: '麦当劳',
+          money: '334,444'
+        },
+        {
+          no: 5,
+          name: '麦当劳',
+          money: '334,444'
+        },
+        {
+          no: 6,
+          name: '麦当劳',
+          money: '334,444'
+        },
+        {
+          no: 7,
+          name: '麦当劳',
+          money: '334,444'
+        }
+      ]
     }
   },
   methods: {
     onMenuSelect(index) {
       this.activeIndex = index
+    },
+    getOptions() {
+      return {
+        color: ['#3398DB'],
+        title: {
+          text: '年度销售额',
+          textStyle: {
+            fontSize: 12,
+            color: '#666'
+          },
+          left: 25,
+          top: 20
+        },
+        series: [
+          {
+            type: 'bar',
+            barWidth: '35%',
+            data: [410, 82, 200, 334, 390, 330, 220, 150, 82, 100, 200, 300]
+          }
+        ],
+        xAxis: {
+          type: 'category',
+          data: [
+            '1月',
+            '2月',
+            '3月',
+            '4月',
+            '5月',
+            '6月',
+            '7月',
+            '8月',
+            '9月',
+            '10月',
+            '11月',
+            '12月'
+          ],
+          axisTick: {
+            alignWithLabel: true, // 柱状图在坐标中间
+            lineStyle: {
+              color: '#999'
+            }
+          },
+          axisLine: {
+            lineStyle: {
+              color: '#999'
+            }
+          },
+          axisLabel: {
+            color: '#333'
+          }
+        },
+        yAxis: {
+          axisLine: {
+            show: false
+          }, //  坐标轴的线
+          axisTick: {
+            show: false
+          },
+          splitLine: {
+            lineStyle: {
+              type: 'dotted',
+              color: '#eee'
+            }
+          }
+        },
+        grid: { top: 70, left: 60, right: 60, bottom: 50 }
+      }
     }
   }
 }
@@ -111,6 +229,60 @@ export default {
       justify-content: flex-end;
       .sales-view-date-picker {
         margin-left: 20px;
+      }
+    }
+  }
+  .sales-view-chart-wrapper {
+    display: flex;
+    height: 270px;
+    .echarts {
+      flex: 0 0 70%;
+      width: 70%;
+      height: 100%;
+    }
+    .sales-view-list {
+      flex: 1;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+
+      .sales-view-title {
+        margin-top: 20px;
+        font-size: 12px;
+        color: #666;
+        font-weight: 500;
+      }
+      .list-item-wrapper {
+        margin-top: 15px;
+        .list-item {
+          display: flex;
+          align-items: center;
+          font-size: 12px;
+          height: 20px;
+          padding: 6px 20px 6px 0;
+          .list-item-no {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            color: #333;
+            &.top-no {
+              background-color: #000;
+              border-radius: 50%;
+              font-weight: 500;
+              color: #fff;
+            }
+          }
+          .list-item-name {
+            margin-left: 10px;
+            color: #333;
+          }
+          .list-item-money {
+            flex: 1;
+            text-align: right;
+          }
+        }
       }
     }
   }
