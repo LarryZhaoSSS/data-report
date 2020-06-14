@@ -1,7 +1,5 @@
 <template>
-  <div>
-    mAP VIEW
-  </div>
+  <div></div>
 </template>
 
 <script>
