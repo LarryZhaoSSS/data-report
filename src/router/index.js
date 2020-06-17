@@ -14,6 +14,11 @@ const routes = [
     path: '/bMap',
     name: 'BMap',
     component: () => import('../views/BMap')
+  },
+  {
+    path: '/bMap2',
+    name: 'BMap2',
+    component: () => import('../views/BMap2')
   }
 ]
 
