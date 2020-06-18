@@ -19,6 +19,11 @@ const routes = [
     path: '/bMap2',
     name: 'BMap2',
     component: () => import('../views/BMap2')
+  },
+  {
+    path: '/liquid',
+    name: 'liquid',
+    component: () => import('../views/LiquidFill')
   }
 ]
 
